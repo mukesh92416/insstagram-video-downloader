@@ -1,0 +1,51 @@
+{% extends "downloader/base.html" %}
+<p style="color:black; word-break:break-all;">
+    {{ media_url }}
+</p>
+
+{% block content %}
+
+<div class="container">
+
+<h2 class="downloader-title">
+    Download Instagram Videos & Reels Instantly
+</h2>
+
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="url"
+           placeholder="Paste Instagram URL"
+           required>
+
+    <!-- Quality selector UI -->
+    <select>
+        <option>Best Quality</option>
+        <option>Medium Quality</option>
+        <option>Low Quality</option>
+    </select>
+
+    <button type="submit">Fetch Media</button>
+</form>
+
+{% if media_url %}
+    {% if ".mp4" in media_url %}
+        <video controls>
+            <source src="{{ media_url }}" type="video/mp4">
+        </video>
+    {% else %}
+        <img src="{{ media_url }}">
+    {% endif %}
+
+    <a href="{{ media_url }}" download class="download-btn">
+        <button>Download</button>
+    </a>
+{% endif %}
+
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+
+</div>
+
+{% endblock %}

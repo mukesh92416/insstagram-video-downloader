@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Media Tools</title>
+    <link rel="stylesheet" href="{% static 'downloader/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">MediaTools</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/downloader/">Downloader</a>
+    </div>
+</nav>
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
